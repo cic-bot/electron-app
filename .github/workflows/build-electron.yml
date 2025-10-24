@@ -1,0 +1,56 @@
+name: Build Electron for Windows
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: |
+        npm install
+        npm list electron
+
+    - name: Verify Electron version
+      run: npx electron --version
+
+    - name: Build Electron app
+      run: npm run build-win
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: electron-app-windows
+        path: |
+          dist/*.exe
+          dist/*.blockmap
+        retention-days: 30
+
+    - name: Create Release
+      if: github.event_name == 'release' && github.event.action == 'published'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*.exe
+        
