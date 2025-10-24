@@ -12,7 +12,7 @@
   },
   "build": {
     "appId": "com.yourcompany.electron-app",
-    "productName": "Electron App",
+    "productName": "ElectronApp",
     "directories": {
       "output": "dist"
     },
