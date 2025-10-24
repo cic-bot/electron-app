@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "build-win": "electron-builder --win"
+    "build-win": "electron-builder --win --ia32"
   },
   "build": {
     "appId": "com.yourcompany.electron-app",
@@ -23,7 +23,13 @@
     ],
     "win": {
       "target": "nsis",
-      "arch": ["x64"]
+      "arch": "ia32"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   },
   "devDependencies": {
