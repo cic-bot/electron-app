@@ -1,0 +1,33 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "Electron application built with GitHub Actions",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.yourcompany.electron-app",
+    "productName": "Electron App",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "arch": ["x64"]
+    }
+  },
+  "devDependencies": {
+    "electron": "36.5.0",
+    "electron-builder": "^24.6.4"
+  }
+}
