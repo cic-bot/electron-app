@@ -22,8 +22,7 @@
       "package.json"
     ],
     "win": {
-      "target": "nsis",
-      "arch": "ia32"
+      "target": "nsis"
     },
     "nsis": {
       "oneClick": false,
