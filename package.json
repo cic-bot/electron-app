@@ -6,7 +6,9 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "build-win": "electron-builder --win --ia32"
+    "build-win-ia32": "electron-builder --win --ia32",
+    "build-win-x64": "electron-builder --win --x64",
+    "build-win": "electron-builder --win --ia32 --x64"
   },
   "build": {
     "appId": "com.yourcompany.electron-app",
@@ -22,7 +24,11 @@
       "package.json"
     ],
     "win": {
-      "target": "nsis"
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,
