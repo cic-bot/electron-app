@@ -38,16 +38,8 @@ jobs:
       - name: Build for ${{ matrix.arch }}
         run: npx electron-builder --win --${{ matrix.arch }} --publish never
       - name: Rename EXE
-        run: Move-Item "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}.exe" "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}-${{ matrix.arch }}.exe"
+        run: Move-Item "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}.exe" "dist/${{ env.APP_NAME }}-Setup-${{ env.APP_VERSION }}-${{ matrix.arch }}.exe"
       - name: Upload Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload electron-app "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}-${{ matrix.arch }}.exe"
-
-      # - name: Upload installer artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: windows-installer-${{ matrix.arch }}
-      #     path: dist/*
-
-      
+        run: gh release upload electron-app "dist/${{ env.APP_NAME }}-Setup-${{ env.APP_VERSION }}-${{ matrix.arch }}.exe"
