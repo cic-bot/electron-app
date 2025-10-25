@@ -1,5 +1,8 @@
 name: Build Windows installers
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
@@ -36,3 +39,7 @@ jobs:
         with:
           name: windows-installer-${{ matrix.arch }}
           path: dist/*
+      - name: ls
+        run: dir dist
+
+      
