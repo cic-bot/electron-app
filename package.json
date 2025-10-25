@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "1.0.0",
+  "version": "36.5.0",
   "description": "Electron application built with GitHub Actions",
   "main": "main.js",
   "scripts": {
