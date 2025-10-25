@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  APP_NAME: ElectronApp
+  APP_VERSION: 36.5.0
+
 jobs:
   build-windows:
     name: Build Windows (matrix)
@@ -33,13 +37,15 @@ jobs:
 
       - name: Build for ${{ matrix.arch }}
         run: npx electron-builder --win --${{ matrix.arch }} --publish never
+      - name: Rename EXE
+        run: Move-Item "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}.exe" "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}-${{ matrix.arch }}.exe"
+      - name: Upload Release
+        run: gh release upload electron-app "dist/${{ env.APP_NAME }} Setup ${{ env.APP_VERSION }}-${{ matrix.arch }}.exe"
 
-      - name: Upload installer artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-installer-${{ matrix.arch }}
-          path: dist/*
-      - name: ls
-        run: dir dist
+      # - name: Upload installer artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: windows-installer-${{ matrix.arch }}
+      #     path: dist/*
 
       
