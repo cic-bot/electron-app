@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const infoDiv = document.getElementById('app-info');
+  document.title = document.title + " "+process.arch
   infoDiv.innerHTML = `
     <h2>Electron Application</h2>
     <p>Built with Electron ${window.electronAPI?.versions?.electron || '36.5.0'}</p>
