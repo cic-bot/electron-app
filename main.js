@@ -16,10 +16,12 @@ function createWindow() {
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.executeJavaScript(`
-        const infoDiv = document.getElementById('app-info');
+    (()=>{ 
+      const infoDiv = document.getElementById('app-info');
         const processInfo = document.createElement('p');
         processInfo.innerText = "Pid: ${process.pid}"
         infoDiv.append(processInfo);
+      })()
     `);
   });
 

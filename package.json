@@ -11,7 +11,7 @@
     "build-win": "electron-builder --win --ia32 --x64"
   },
   "build": {
-    "appId": "com.yourcompany.electron-app",
+    "appId": "com.cic-bot.electron-app",
     "productName": "ElectronApp",
     "directories": {
       "output": "dist"
