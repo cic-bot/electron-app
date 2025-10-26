@@ -42,6 +42,7 @@ jobs:
           
           # Verify the change
           Get-Content package.json | Select-String "productName"
+          Get-Content package.json | Select-String "appId"
 
       - name: Install dependencies
         run: npm ci
